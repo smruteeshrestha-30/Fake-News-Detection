@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analysis Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Article Analysis Report</h2>
+        
+        <div class="card">
+            <h3>Input Metadata</h3>
+            <p><strong>Title:</strong> {{ result.article_info.title }}</p>
+            <p><strong>Source:</strong> {{ result.article_info.source }}</p>
+            <p><strong>Date:</strong> {{ result.article_info.date }}</p>
+            {% if result.article_info.url and result.article_info.url != '#' %}
+                <p><strong>URL:</strong> <a href="{{ result.article_info.url }}" target="_blank">{{ result.article_info.url }}</a></p>
+            {% endif %}
+        </div>
+
+        <div class="card prediction-card {{ result.prediction_class }}">
+            <h3>Prediction: {{ result.prediction }}</h3>
+            <p>Model Confidence: <strong>{{ result.confidence }}</strong></p>
+            <p>Real Probability: {{ result.real_probability }} | Fake Probability: {{ result.fake_probability }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Retrieved Evidence</h3>
+            <p class="decision decision-{{ result.evidence_source }}">{{ result.decision }}</p>
+
+            {% if result.evidence %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Source</th>
+                            <th>Date</th>
+                            <th>Match</th>
+                            <th>Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in result.evidence %}
+                        <tr>
+                            <td>{{ item.title }}</td>
+                            <td>{{ item.source }}</td>
+                            <td>{{ item.date }}</td>
+                            <td>
+                                {% if item.match_type == 'live' %}
+                                    <span class="tag tag-live">Live Web Match</span>
+                                {% else %}
+                                    <span class="tag tag-csv">CSV: {{ item.similarity_score }}</span>
+                                    {% if item.label == 'REAL' %}<span class="tag tag-real">REAL</span>{% elif item.label == 'FAKE' %}<span class="tag tag-fake">FAKE</span>{% endif %}
+                                    {% if item.same_article %}<span class="tag tag-same">Same article</span>{% endif %}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if item.url and item.url != '#' %}
+                                    <a href="{{ item.url }}" target="_blank" rel="noopener">View Article</a>
+                                {% else %}
+                                    Corpus ID {{ item.article_id }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="nothing-found">Nothing found.</p>
+            {% endif %}
+        </div>
+
+        <div class="warning-box">
+            <strong>Limitation Warning:</strong> {{ result.limitation_warning }}
+        </div>
+
+        <a href="/" class="btn-secondary">Analyze Another Article</a>
+    </div>
+</body>
+</html>

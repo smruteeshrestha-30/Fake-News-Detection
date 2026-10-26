@@ -1,0 +1,124 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+h1, h2, h3 {
+    color: #333;
+}
+
+textarea, input[type="url"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.btn {
+    background-color: #0066cc;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-secondary {
+    display: inline-block;
+    margin-top: 15px;
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.card {
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.prediction-card.real {
+    border-left: 6px solid #28a745;
+    background-color: #f0fff4;
+}
+
+.prediction-card.fake {
+    border-left: 6px solid #dc3545;
+    background-color: #fff0f0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+.warning-box {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.error-msg {
+    color: red;
+    margin-bottom: 15px;
+}
+
+.prediction-card.neutral {
+    border-left: 6px solid #6c757d;
+    background-color: #f5f5f5;
+}
+
+.decision {
+    margin: 0 0 12px;
+    font-size: 0.95em;
+    color: #444;
+}
+
+.nothing-found {
+    font-weight: bold;
+    color: #856404;
+}
+
+.tag {
+    display: inline-block;
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-weight: bold;
+    margin: 1px 2px 1px 0;
+}
+
+.tag-live { background-color: #17a2b8; }
+.tag-csv  { background-color: #28a745; }
+.tag-same { background-color: #6f42c1; }
+
+.tag-real { background-color: #1e7e34; }
+.tag-fake { background-color: #c82333; }

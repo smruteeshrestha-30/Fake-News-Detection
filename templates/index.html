@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fake News Detection & Evidence Retrieval System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Fake News Detection & Evidence Retrieval</h1>
+        {% if error %}
+            <div class="error-msg">{{ error }}</div>
+        {% endif %}
+        
+        <form action="/analyze" method="POST">
+            <h3>Option 1: Paste News Article</h3>
+            <textarea name="news_text" rows="8" placeholder="Paste full article text or claims here..."></textarea>
+            
+            <h3>Option 2: Analyze Article via URL</h3>
+            <input type="url" name="news_url" placeholder="https://example.com/news/article">
+            
+            <button type="submit" class="btn">ANALYZE ARTICLE</button>
+        </form>
+    </div>
+</body>
+</html>
